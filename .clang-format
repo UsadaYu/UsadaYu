@@ -1,0 +1,195 @@
+# Based on Clang 22.0.0 git documentation, Clang-Format Style Options.
+# @ref en: https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# @ref cn: https://clang.llvm.net.cn/docs/ClangFormatStyleOptions.html
+
+---
+BasedOnStyle: Google
+AccessModifierOffset: -1
+AlignAfterOpenBracket: Align
+AlignArrayOfStructures: Left
+AlignConsecutiveAssignments: false
+AlignConsecutiveBitFields: false
+AlignConsecutiveDeclarations: false
+AlignConsecutiveMacros: false
+AlignConsecutiveShortCaseStatements:
+  Enabled: false
+AlignConsecutiveTableGenBreakingDAGArgColons: false
+AlignConsecutiveTableGenCondOperatorColons: false
+AlignConsecutiveTableGenDefinitionColons: false
+AlignEscapedNewlines: DontAlign
+AlignOperands: false
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 1
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowBreakBeforeNoexceptSpecifier: Never
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseExpressionOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortCompoundRequirementOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: Empty
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakBeforeMultilineStrings: true
+# AttributeMacros:
+BinPackArguments: true
+BinPackParameters: BinPack
+BitFieldColonSpacing: After
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeLambdaBody: false
+  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+# BracedInitializerIndentWidth:
+BreakAdjacentStringLiterals: true
+BreakAfterAttributes: Never
+BreakAfterJavaFieldAnnotations: true
+BreakAfterReturnType: Automatic
+BreakArrays: true
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Attach
+BreakBeforeConceptDeclarations: Always
+BreakBeforeInlineASMColon: OnlyMultiline
+BreakBeforeTernaryOperators: true
+BreakBinaryOperations: Never
+BreakConstructorInitializers: BeforeColon
+BreakFunctionDefinitionParameters: false
+BreakInheritanceList: BeforeColon
+BreakStringLiterals: true
+BreakTemplateDeclarations: Yes
+ColumnLimit: 80
+# CommentPragmas:
+CompactNamespaces: false
+# ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 2
+Cpp11BracedListStyle: true
+DerivePointerAlignment: false
+DisableFormat: false
+EmptyLineAfterAccessModifier: Never
+EmptyLineBeforeAccessModifier: LogicalBlock
+ExperimentalAutoDetectBinPacking: false
+FixNamespaceComments: true
+# ForEachMacros: [ql_foreach, qr_foreach]
+# IfMacros:
+IncludeBlocks: Regroup
+# IncludeCategories:
+# IncludeIsMainRegex:
+# IncludeIsMainSourceRegex:
+# IndentAccessModifiers:
+IndentCaseBlocks: false
+IndentCaseLabels: false
+# IndentExternBlock:
+IndentGotoLabels: true
+IndentPPDirectives: AfterHash
+IndentRequiresClause: false
+IndentWidth: 2
+IndentWrappedFunctionNames: false
+InsertBraces: false
+InsertNewlineAtEOF: true
+# InsertTrailingCommas:
+# IntegerLiteralSeparator:
+# JavaImportGroups:
+# JavaScriptQuotes:
+# JavaScriptWrapImports:
+# KeepEmptyLines:
+# KeepFormFeed:
+LambdaBodyIndentation: Signature
+Language: Cpp
+LineEnding: LF
+# MacroBlockBegin:
+# MacroBlockEnd:
+# Macros:
+# MacrosSkippedByRemoveParentheses:
+# MainIncludeChar:
+MaxEmptyLinesToKeep: 1
+# NamespaceIndentation:
+# NamespaceMacros:
+# NumericLiteralCase:
+# ObjCBinPackProtocolList:
+ObjCBlockIndentWidth: 2
+ObjCBreakBeforeNestedBlockParam: true
+# ObjCPropertyAttributeOrder:
+# ObjCSpaceAfterProperty: false
+# ObjCSpaceBeforeProtocolList: false
+PPIndentWidth: -1
+# PackConstructorInitializers:
+PenaltyBreakAssignment: 2
+PenaltyBreakBeforeFirstCallParameter: 1
+PenaltyBreakComment: 300
+PenaltyBreakFirstLessLess: 120
+# PenaltyBreakOpenParenthesis:
+# PenaltyBreakScopeResolution:
+PenaltyBreakString: 1000
+# PenaltyBreakTemplateDeclaration:
+PenaltyExcessCharacter: 1000000
+# PenaltyIndentedWhitespace:
+PenaltyReturnTypeOnItsOwnLine: 60
+PointerAlignment: Right
+# QualifierAlignment:
+# QualifierOrder:
+# RawStringFormats:
+# ReferenceAlignment:
+# ReflowComments:
+# RemoveBracesLLVM:
+# RemoveEmptyLinesInUnwrappedLines:
+# RemoveParentheses:
+# RemoveSemicolon:
+# RequiresClausePosition:
+# RequiresExpressionIndentation:
+# SeparateDefinitionBlocks:
+ShortNamespaceLines: 1
+# SkipMacroDefinitionBody:
+SortIncludes: CaseInsensitive
+# SortJavaStaticImport:
+SortUsingDeclarations: Lexicographic
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: false
+# SpaceAroundPointerQualifiers:
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeCpp11BracedList: true
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeJsonColon: false
+SpaceBeforeParens: ControlStatements
+# SpaceBeforeParensOptions:
+# SpaceBeforeRangeBasedForLoopColon:
+# SpaceBeforeSquareBrackets:
+# SpaceInEmptyBlock:
+SpacesBeforeTrailingComments: 1
+SpacesInAngles: Never
+SpacesInContainerLiterals: false
+# SpacesInLineCommentPrefix:
+# SpacesInParens:
+# SpacesInParensOptions:
+SpacesInSquareBrackets: false
+Standard: Latest
+# StatementAttributeLikeMacros:
+# StatementMacros:
+TabWidth: 2
+# TableGenBreakInsideDAGArg:
+# TableGenBreakingDAGArgOperators:
+# TemplateNames:
+# TypeNames:
+# TypenameMacros:
+UseTab: Never
+# VariableTemplates:
+# VerilogBreakBetweenInstancePorts:
+# WhitespaceSensitiveMacros:
+WrapNamespaceBodyWithEmptyLines: Never
+---
+
