@@ -1,20 +1,14 @@
 # Mihon
 
-
-
 # 1 环境
 
 ## 1.1 Android 15
-
-
 
 # 2 前言
 
 Mihon 是一款免费开源的漫画阅读器，支持各种插件。
 
 Mihon 不提供漫画资源，不过可以通过插件支持漫画搜索功能。
-
-
 
 # 3 官方地址
 
@@ -23,8 +17,6 @@ Mihon 不提供漫画资源，不过可以通过插件支持漫画搜索功能�
 ```
 https://mihon.app/download/
 ```
-
-
 
 # 4 插件
 
@@ -37,8 +29,6 @@ https://keiyoushi.github.io/extensions/
 Languagus 可以选择简体中文和繁体中文。
 
 然后自行下载需要的插件。
-
-
 
 打开 Mihon App，点击 `浏览` 按钮，里面就会显示已经安装的插件。
 

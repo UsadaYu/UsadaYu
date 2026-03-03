@@ -2,8 +2,6 @@
 
 以仓库管理员的身份配置 github 环境。
 
-
-
 # 1 ssh clone
 
 每次在 https clone 的本地仓 `git push` 时，那个 username 和 password 感觉格外 `薛定谔`。
@@ -30,8 +28,6 @@ cat $HOME/.ssh/id_ed25519.pub
 * SSH and GPG keys
 * New SSH key
 
-
-
 # 2 ssh key confirm
 
 如何确认 ssh 的密钥确实已添加到 github 了呢？
@@ -45,11 +41,9 @@ ssh -T git@github.com
 Hi UsadaYu! You've successfully authenticated...
 ```
 
-
-
 # 3 port config
 
-在中国大陆的网络环境下，github 的22端口经常被干扰或被直接封禁。
+在中国大陆的网络环境下，github 的 22 端口经常被干扰或被直接封禁。
 
 比如这个和密钥相关的 IP：`20.205.243.166`，它的 22 端口一般来说是无了。嗯，真是遥遥领先。
 

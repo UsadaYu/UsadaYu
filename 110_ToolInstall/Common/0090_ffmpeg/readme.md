@@ -1,7 +1,5 @@
 # ffmpeg
 
-
-
 # 1 环境
 
 ## 1.1 Linux
@@ -12,23 +10,17 @@
 
 * Compiler：gcc-15.2.0
 
-
-
 ### 1.1.2 Ubuntu-24
 
 * glibc version：2.39
 
 * Compiler：gcc-15.2.0
 
-
-
 ### 1.1.3 Windows-Mingw64-gcc/clang
 
 * cygwin version: 3.5.7
 
 * Compiler：gcc-14.2.0
-
-
 
 ### 1.1.4 Windows-Mingw64-msvc
 
@@ -44,33 +36,23 @@
 https://github.com/BtbN/FFmpeg-Builds/releases
 ```
 
-
-
 当然也可以选择自行编译。
 
 在 Windows 安装时，可以选择使用 mingw64。
-
-
 
 # 3 安装依赖
 
 安装之前，建议添加一些组件。
 
-
-
 ## 3.1 libx264
 
  `libx264`，使 ffmpeg 支持对 h264 的软编。
-
-
 
 ### 3.1.1 源码地址
 
 ```
 https://www.videolan.org/developers/x264.html
 ```
-
-
 
 ### 3.1.2 安装流程
 
@@ -100,8 +82,6 @@ source ~/.bash_profile
 x264 --version
 ```
 
-
-
 在 Windows 下编译可能出现线程报错：
 
 ```
@@ -122,21 +102,15 @@ make: *** Waiting for unfinished jobs....
 --disable-thread
 ```
 
-
-
 ## 3.2 libx265
 
 `libx265`，使 ffmpeg 支持对 h265(hevc) 的软编。
-
-
 
 ### 3.2.1 源码地址
 
 ```
 https://bitbucket.org/multicoreware/x265_git/downloads/
 ```
-
-
 
 ### 3.2.2 安装流程
 
@@ -146,13 +120,10 @@ libx265 源码目录下已经存在 build 目录，是各平台的安装脚本�
 
 ```shell
 cmake \
--DCMAKE_C_COMPILER=gcc \
--DCMAKE_CXX_COMPILER=g++ \
+-G Ninja \
 -S ./source \
 -B build_custom
 ```
-
-
 
 如果构建时出现类似如下 cmake 版本报错：
 
@@ -166,7 +137,6 @@ CMake Error at CMakeLists.txt:10 (cmake_policy):
   behavior or use an older version of CMake that still supports the old
   behavior.  Run cmake --help-policy CMP0025 for more information.
 
-
 CMake Error at CMakeLists.txt:16 (cmake_policy):
   Policy CMP0054 may not be set to OLD behavior because this version of CMake
   no longer supports it.  The policy was introduced in CMake version 3.1.0,
@@ -176,8 +146,6 @@ CMake Error at CMakeLists.txt:16 (cmake_policy):
   behavior or use an older version of CMake that still supports the old
   behavior.  Run cmake --help-policy CMP0054 for more information.
 ```
-
-
 
 可以修改 `source/CMakeLists.txt`：
 
@@ -191,25 +159,21 @@ cmake_policy(SET CMP0025 NEW)
 cmake_policy(SET CMP0054 NEW)
 ```
 
-
-
 如果构建时提示 cmake 版本过新，可以添加此选项：`-DCMAKE_POLICY_VERSION_MINIMUM=3.5`。
 
 ```shell
 cmake \
--DCMAKE_C_COMPILER=gcc \
--DCMAKE_CXX_COMPILER=g++ \
--DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/x265_4.1 \
--DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 -S ./source \
--B build_custom
+-B build_custom \
+-G Ninja \
+-DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/x265_4.1 \
+-DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 # 自定义选项，如使能 `ENABLE_ASSEMBLY` 等。
 cmake \
 --build ./build_custom/ \
 --target edit_cache
 
-cmake --build ./build_custom/ --target all -- -j8
 cmake --build ./build_custom/ --target install
 
 # 在 mingw64 上，使用多线程编译在链接时可能会报错，可以尝试单线程编译。
@@ -230,21 +194,15 @@ source ~/.bash_profile
 x265 --version
 ```
 
-
-
 ## 3.3 libsvtav1
 
 `libsvtav1`，使 ffmpeg 支持对 av1 的软编。
-
-
 
 ### 3.3.1 源码地址
 
 ```
 https://github.com/Fawkex/SVT-AV1-Binaries/releases
 ```
-
-
 
 ### 3.3.2 安装流程
 
@@ -256,19 +214,17 @@ libsvtav1 源码目录下同样已经存在 build 目录。
 
 ```shell
 cmake \
--DCMAKE_C_COMPILER=gcc \
--DCMAKE_CXX_COMPILER=g++ \
--DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/SVT-AV1-19 \
--DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 -S . \
--B build_custom
+-B build_custom \
+-G Ninja \
+-DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/SVT-AV1-19 \
+-DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 # 自定义选项，如使能 `ENABLE_NASM` 等。
 cmake \
 --build ./build_custom/ \
 --target edit_cache
 
-cmake --build ./build_custom/ --target all -- -j8
 cmake --build ./build_custom/ --target install
 
 # Environment
@@ -289,8 +245,6 @@ SvtAv1EncApp --version
 SvtAv1EncApp --help
 ```
 
-
-
 # 4 gcc/clang ffmpeg
 
 ## 4.1 源码地址
@@ -298,8 +252,6 @@ SvtAv1EncApp --help
 ```
 https://ffmpeg.org/download.html
 ```
-
-
 
 ## 4.2 安装
 
@@ -335,8 +287,6 @@ ffmpeg -version
 ffprobe -version
 ```
 
-
-
 ### 4.2.2 Enable cuda
 
 如果有 cuda 环境，可以使能 nvcc 编译，使 ffmpeg 获得 NVIDIA GPU 的加速。
@@ -346,8 +296,6 @@ ffprobe -version
 ```
 https://docs.nvidia.com/video-technologies/video-codec-sdk/11.1/ffmpeg-with-nvidia-gpu/index.html
 ```
-
-
 
 ```shell
 ./configure \
@@ -366,8 +314,6 @@ https://docs.nvidia.com/video-technologies/video-codec-sdk/11.1/ffmpeg-with-nvid
 make -j32 && make install
 ```
 
-
-
 ### 4.2.3 交叉编译
 
 以 arm64 为例。
@@ -385,8 +331,6 @@ make -j32 && make install
 --enable-libsvtav1
 ```
 
-
-
 # 5 msvc ffmpeg
 
 不太建议用 msvc 编译 ffmpeg，如果不得已的话，尽量用有英文语言包的 msvc 编译器。
@@ -401,8 +345,6 @@ make -j32 && make install
 
 ---
 
-
-
 ## 5.1 环境
 
 首先需要确保环境中的编译器和链接器可被找到，及 `cl` 和 `link`。
@@ -414,8 +356,6 @@ https://trac.ffmpeg.org/wiki/CompilationGuide/MSVC
 ```
 
 文中有提到，尽量使用和 `cl` 配套的微软链接器。
-
-
 
 ## 5.2 依赖
 
@@ -430,39 +370,33 @@ CC=cl CXX=cl ./configure \
 make -j8 && make install
 ```
 
-
-
 ### 5.2.2 libx265
 
 ```shell
 cmake \
+-S ./source \
+-B build_custom \
 -DCMAKE_C_COMPILER=cl \
 -DCMAKE_CXX_COMPILER=cl \
--DCMAKE_INSTALL_PREFIX=$HOME/.local/mingw64-msvc/X265-4.1 \
--S ./source \
--B build_custom
+-DCMAKE_INSTALL_PREFIX=$HOME/.local/mingw64-msvc/X265-4.1
 
 cmake --build build_custom --config Release --parallel 8 --target install
 
 # 安装后，将 lib 目录下的 `libx265.lib` 文件复制一份，并改名为 `x265.lib`，否则 ffmpeg 可能无法找到
 ```
 
-
-
 ### 5.2.3 libsvtav1
 
 ```shell
 cmake \
+-S . \
+-B build_custom \
 -DCMAKE_C_COMPILER=cl \
 -DCMAKE_CXX_COMPILER=cl \
--DCMAKE_INSTALL_PREFIX=$HOME/.local/mingw64-msvc/SVT-AV1-19 \
--S . \
--B build_custom
+-DCMAKE_INSTALL_PREFIX=$HOME/.local/mingw64-msvc/SVT-AV1-19
 
 cmake --build build_custom --config Release --parallel 8 --target install
 ```
-
-
 
 ## 5.3 ffmpeg
 
@@ -489,8 +423,6 @@ grep -q Microsoft
 ```
 
 如果 msvc 有英文语言包，那么脚本前的 `VSLANG=1033` 会生效，就可以不用做修改了。
-
-
 
 #### 5.3.1.2 cc_ident
 
@@ -534,8 +466,6 @@ _ident=$(sanitize_string "$_ident")
 echo "_ident: $_ident"
 ```
 
-
-
 ### 5.3.2 安装
 
 ```shell
@@ -554,4 +484,3 @@ echo "_ident: $_ident"
 
 make -j8 && make install
 ```
-

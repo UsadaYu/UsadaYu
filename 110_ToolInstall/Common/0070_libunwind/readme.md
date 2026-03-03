@@ -1,7 +1,5 @@
 # libunwind
 
-
-
 # 1 环境
 
 ## 1.1 Linux
@@ -12,23 +10,17 @@
 
 * Compiler：gcc-15.2.0
 
-
-
 ### 1.1.2 Ubuntu-24
 
 * glibc version：2.39
 
 * Compiler：gcc-15.2.0
 
-
-
 # 2 官方地址
 
 ```
 https://github.com/libunwind/libunwind/releases
 ```
-
-
 
 # 3 安装流程
 
@@ -43,8 +35,6 @@ endif ()
 ```
 
 因此，这里使用 automake 编译。
-
-
 
 ## 3.1 x86_64
 
@@ -73,8 +63,6 @@ fi
 source ~/.bash_profile
 ```
 
-
-
 ## 3.2 aarch64
 
 aarch64 平台，如 hi3519dv500，配置如下：
@@ -86,8 +74,6 @@ aarch64 平台，如 hi3519dv500，配置如下：
 CC=aarch64-linux-gnu-hi3519dv500-v2-gcc \
 CXX=aarch64-linux-gnu-hi3519dv500-v2-g++
 ```
-
-
 
 # 4 使用说明
 
@@ -132,8 +118,6 @@ static inline void print_call_chain() {
 }
 ```
 
-
-
 ## 4.1 编译
 
 使用 unwind 的静态库编译上述代码。
@@ -146,7 +130,7 @@ static inline void print_call_chain() {
 Libs.private: -llzma -lz
 ```
 
-所以编译命令参考如下 (`-lz` 一般可以不加)：
+所以编译命令参考如下 (`-lz` 一般可以不加）：
 
 ```shell
 gcc \
@@ -163,8 +147,6 @@ main.c \
 
 `-lunwind-x86_64` 和 `-lunwind` 顺序不能调换。
 
-
-
 ### 4.1.2 aarch64 平台
 
 以 hi3519dv500 为例，其编译命令参考如下：
@@ -177,4 +159,3 @@ main.c \
 -lunwind-aarch64 \
 -lunwind
 ```
-

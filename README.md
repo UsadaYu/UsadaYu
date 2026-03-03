@@ -1,7 +1,5 @@
 # UsadaYu
 
-
-
 # Author
 
 ---
@@ -11,4 +9,3 @@
 ```
 UsadaYu
 ```
-

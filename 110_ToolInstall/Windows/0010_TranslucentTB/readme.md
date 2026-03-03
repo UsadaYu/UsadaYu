@@ -1,24 +1,14 @@
 # TranslucentTB
 
-
-
-
-
 # 1 环境
 
 ## 1.1 Windows 11
-
-
 
 # 2 引言
 
 如果希望将 Windows 底部的任务栏设置为透明，Windows10 可以通过修改注册表选项实现，但 Windows11 似乎不行。
 
 不过 TranslucentTB 这款软件实现了相同的功能。
-
-
-
-
 
 # 3 官方地址
 
@@ -38,19 +28,15 @@ https://github.com/TranslucentTB/TranslucentTB/releases
 
 这里下载 `portable-x64` 的压缩包与 `winui-x64.appx`，后者是前者的依赖，否则运行程序时会报错。
 
-
-
 # 4 安装
 
 双击 `winui-x64.appx` 即可安装，然后再解压 `portable-x64` 的压缩包，运行里面的 `exe` 文件即可。
-
-
 
 # 5 开机自启动
 
 如果软件默认不是开机自启动的，则可以按照如下步骤配置：
 
-(1) win + r，输入:
+(1) win + r，输入：
 
 ```powershell
 shell:startup

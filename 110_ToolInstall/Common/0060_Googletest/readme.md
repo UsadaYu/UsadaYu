@@ -1,7 +1,5 @@
 # GoogleTest
 
-
-
 # 1 环境
 
 ## 1.1 Linux
@@ -12,15 +10,11 @@
 
 * Compiler：gcc-15.2.0
 
-
-
 ### 1.1.2 Ubuntu-24
 
 * glibc version：2.39
 
 * Compiler：gcc-15.2.0
-
-
 
 # 2 源码地址
 
@@ -28,20 +22,16 @@
 https://github.com/google/googletest/releases
 ```
 
-
-
 # 3 安装流程
 
 ```shell
 cmake \
--DBUILD_SHARED_LIBS=ON \
--DCMAKE_CXX_COMPILER=g++ \
--DCMAKE_C_COMPILER=gcc \
--DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/googletest-1.17.0 \
 -S . \
--B build
+-B build \
+-G Ninja \
+-DBUILD_SHARED_LIBS=ON \
+-DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/googletest-1.17.0
 
-cmake --build build --target all -- -j8
 cmake --build build --target install
 
 # Environment
@@ -56,4 +46,3 @@ fi
 
 source ~/.bash_profile
 ```
-

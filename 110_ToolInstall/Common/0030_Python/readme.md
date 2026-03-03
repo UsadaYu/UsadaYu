@@ -1,7 +1,5 @@
 # Python
 
-
-
 # 1 环境
 
 ## 1.1 Linux
@@ -12,15 +10,11 @@
 
 * Compiler：gcc-15.2.0
 
-
-
 ### 1.1.2 Ubuntu-24
 
 * glibc version：2.39
 
 * Compiler：gcc-15.2.0
-
-
 
 # 2 Python
 
@@ -31,8 +25,6 @@
 ```
 https://sourceware.org/libffi/
 ```
-
-
 
 ### 2.1.2 openssl
 
@@ -53,23 +45,17 @@ Python requires a OpenSSL 1.1.1 or newer
 https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz
 ```
 
-
-
 ### 2.1.3 zlib
 
 ```
 https://www.zlib.net/
 ```
 
-
-
 ### 2.1.4 Python
 
 ```
 https://www.python.org/ftp/python/
 ```
-
-
 
 ## 2.2 安装流程
 
@@ -93,8 +79,6 @@ fi
 
 source ~/.bash_profile
 ```
-
-
 
 ### 2.2.2 openssl 安装
 
@@ -121,17 +105,16 @@ source ~/.bash_profile
 openssl version
 ```
 
-
-
 ### 2.2.3 zlib 安装
 
 ```shell
 cmake \
--DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/zlib-1.3.1 \
 -S . \
--B build
+-B build \
+-G Ninja \
+-DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/zlib-1.3.1
 
-cmake --build build --target install --parallel 8
+cmake --build build --target install
 
 # Environment
 vim ~/.bash_profile
@@ -144,8 +127,6 @@ fi
 
 source ~/.bash_profile
 ```
-
-
 
 ### 2.2.4 Python 安装
 
@@ -172,8 +153,6 @@ fi
 source ~/.bash_profile
 ```
 
-
-
 ## 2.3 校验
 
 ```shell
@@ -195,4 +174,3 @@ pip3 install gcovr
 pip3 install pyinstaller
 pip3 list
 ```
-

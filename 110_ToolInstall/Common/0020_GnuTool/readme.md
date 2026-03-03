@@ -1,7 +1,5 @@
 # Gnu Tool Install
 
-
-
 # 1 环境
 
 ## 1.1 Linux
@@ -12,15 +10,11 @@
 
 * Compiler：gcc-15.2.0
 
-
-
 ### 1.1.2 Ubuntu-24
 
 * glibc version：2.39
 
 * Compiler：gcc-15.2.0
-
-
 
 # 2 binutils
 
@@ -30,13 +24,11 @@
 https://sourceware.org/pub/binutils/releases/
 ```
 
-
-
 ## 2.2 安装流程
 
 ```shell
 ./configure \
---prefix=$HOME/.local/x64_ubuntu-24/binutils-2.45
+--prefix=$HOME/.local/x64_ubuntu-24/binutils-2.46.0
 
 make -j16
 make install
@@ -45,7 +37,7 @@ make install
 vim ~/.bash_profile
 
 if [[ "$docker_host" == *"ubuntu24"* ]]; then
-    dir_prefix="${dir_prefix_local}/x64_ubuntu-24/binutils-2.45"
+    dir_prefix="${dir_prefix_local}/x64_ubuntu-24/binutils-2.46.0"
     export LD_LIBRARY_PATH=${dir_prefix}/lib:$LD_LIBRARY_PATH
     export PATH=${dir_prefix}/bin:$PATH
 fi
@@ -56,9 +48,11 @@ source ~/.bash_profile
 ld -v
 ```
 
-
-
 # 3 gcc
+
+安装 gcc 时，不要使用新版本的 `binutils`。
+
+可以待 gcc 安装完成后，再将 `binutils` 对应的路径添加到环境变量。
 
 ## 3.1 安装文档与源码地址
 
@@ -68,15 +62,11 @@ ld -v
 https://gcc.gnu.org/install/prerequisites.html
 ```
 
-
-
 ### 3.1.2 gmp
 
 ```
 https://gmplib.org/
 ```
-
-
 
 ### 3.1.3 mpfr
 
@@ -84,15 +74,11 @@ https://gmplib.org/
 https://www.mpfr.org/mpfr-current/
 ```
 
-
-
 ### 3.1.4 mpc
 
 ```
 https://www.multiprecision.org/mpc/download.html
 ```
-
-
 
 ### 3.1.5 gcc
 
@@ -101,8 +87,6 @@ gcc 源码镜像地址，官方提供了 mirrors，任意选择一个下载。
 ```
 https://gcc.gnu.org/mirrors.html
 ```
-
-
 
 ## 3.2 安装流程
 
@@ -127,8 +111,6 @@ fi
 source ~/.bash_profile
 ```
 
-
-
 ### 3.2.2 mpfr 安装
 
 ```shell
@@ -151,8 +133,6 @@ fi
 source ~/.bash_profile
 ```
 
-
-
 ### 3.2.3 mpc 安装
 
 ```shell
@@ -174,8 +154,6 @@ fi
 
 source ~/.bash_profile
 ```
-
-
 
 ### 3.1.3 gcc 安装
 
@@ -211,8 +189,6 @@ gcc --version
 g++ --version
 ```
 
-
-
 # 4 gdb
 
 ## 4.1 gdb 源码地址
@@ -220,8 +196,6 @@ g++ --version
 ```
 https://sourceware.org/pub/gdb/releases/?C=M;O=D
 ```
-
-
 
 ## 4.2 安装流程
 
@@ -250,8 +224,6 @@ gdb --version
 gdbserver --version
 ```
 
-
-
 # 5 glibc
 
 ## 5.1 glibc 源码地址
@@ -260,15 +232,11 @@ gdbserver --version
 https://ftp.gnu.org/gnu/libc/
 ```
 
-
-
 ## 5.2 安装流程
 
 ### 5.2.1 安装错误
 
 glibc 的 automake 会检查一些工具版本，环境等，此时可能会遇到以下几个问题。
-
-
 
 #### 5.2.1.1 make 版本错误
 
@@ -277,8 +245,6 @@ glibc 的 automake 会检查一些工具版本，环境等，此时可能会遇�
 于是我通过源码安装了 make，可是还是显示 make 版本过低。
 
 从 config.log 日志可以看到环境变量 `MAKE=gmake`，所以需要将 MAKE 变量改为 make，或安装高版本 gmake。
-
-
 
 #### 5.2.1.2 动态库环境变量错误
 
@@ -292,8 +258,6 @@ glibc 的 automake 会检查一些工具版本，环境等，此时可能会遇�
 
 因此将末尾的 `:` 去掉就行
 
-
-
 ### 5.2.2 glibc 安装
 
 ```shell
@@ -306,8 +270,6 @@ MAKE=make ../configure \
 make -j8
 make install
 ```
-
-
 
 ### 5.2.3 自定义 glibc 的使用
 
@@ -339,15 +301,11 @@ objdump -p ./main | grep NEEDED
 readelf -d ./main
 ```
 
-
-
 稍加尝试，可以发现几乎所有可执行文件多少都会依赖其它动态库，基础的命令如 ls、vim 也不例外。
 
 因此 `ld-linux-x86-64.so.2` 的重要性不言而喻，
 
 如果 `ld-linux-x86-64.so.2` 出问题，一般能用的命令只剩 `pwd` 和 `cd` 了。
-
-
 
 需要注意的是，默认情况下，可执行文件都会优先寻找 `/lib64/ld-linux-x86-64.so.2` 这个动态库。
 
@@ -360,8 +318,6 @@ export LD_PRELOAD=${dir_prefix}/lib/ld-linux-x86-64.so.2
 ```
 
 不过我试了下，在我的环境下，这种修改方式只会产生无尽的 `Segmentation fault`。
-
-
 
 #### 5.2.3.2 使用自定义的 glibc
 
@@ -381,8 +337,6 @@ export LD_PRELOAD=${dir_prefix}/lib/ld-linux-x86-64.so.2
 vim: /lib64/ld-linux-x86-64.so.2: version `GLIBC_2.35' not found
 ```
 
-
-
 那么如果没有 root 权限，又的确要使用 glibc 该怎么办？
 
 一般来说，下载新版本的 glibc 无非是希望编译时程序可以依赖新一些新版本的库，如 `pthread.so`。
@@ -393,23 +347,17 @@ vim: /lib64/ld-linux-x86-64.so.2: version `GLIBC_2.35' not found
 
 这里我使用的是 `patchelf`。
 
-
-
 ##### 5.2.3.2.1 patchelf 源码地址
 
 ```
 https://github.com/NixOS/patchelf
 ```
 
-
-
 ##### 5.2.3.2.2 patchelf release 地址
 
 ```
 https://github.com/NixOS/patchelf/releases
 ```
-
-
 
 ##### 5.2.3.2.3 patchelf 的使用
 
@@ -425,8 +373,6 @@ patchelf --set-interpreter $HOME/.local/x64_ubuntu-24/glibc-2.40/lib/ld-linux-x8
 
 所以使用 `patchelf` 后，需要保证依赖库在 `ld-linux-x86-64.so.2` 的同级目录下或在 `LD_LIBRARY_PATH` 中。
 
-
-
 # 6 libtool
 
 ## 6.1 libtool 源码地址
@@ -434,8 +380,6 @@ patchelf --set-interpreter $HOME/.local/x64_ubuntu-24/glibc-2.40/lib/ld-linux-x8
 ```
 https://github.com/autotools-mirror/libtool/tags
 ```
-
-
 
 ## 6.2 安装流程
 
@@ -461,4 +405,3 @@ source ~/.bash_profile
 libtool --version
 libtoolize --version
 ```
-

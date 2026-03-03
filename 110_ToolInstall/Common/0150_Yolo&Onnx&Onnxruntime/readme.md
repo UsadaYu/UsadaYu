@@ -1,7 +1,5 @@
 # Yolo & Onnx & Onnxruntime
 
-
-
 # 1 环境
 
 ## 1.1 Linux
@@ -12,15 +10,11 @@
 
 * Compiler：gcc-15.2.0
 
-
-
 ### 1.1.2 Ubuntu-24
 
 * glibc version：2.39
 
 * Compiler：gcc-15.2.0
-
-
 
 ### 1.1.3 Windows-Minw64-msvc
 
@@ -30,9 +24,7 @@
 
 如果希望使用开源的模型对图像或视频做目标检测，那么 yolo 是不错的选择。
 
-yolo 本身是直接支持 python 的；当然也可以通过一些方式被 c++ 调用。
-
-
+yolo 本身是直接支持 python 的；当然也可以通过一些方式被 C++ 调用。
 
 # 3 Yolo 的使用与安装
 
@@ -43,8 +35,6 @@ yolo 本身是直接支持 python 的；当然也可以通过一些方式被 c++
 ```
 https://docs.ultralytics.com/zh/models/yolo12/#supported-tasks-and-modes
 ```
-
-
 
 ## 3.2 前置说明
 
@@ -57,9 +47,7 @@ pip install opencv-python
 pip install ultralytics
 ```
 
-
-
-### 3.2.2 GPU 环境 (可选)
+### 3.2.2 GPU 环境（可选）
 
 如果希望使用 GPU，也可以配置相关的 GPU 环境：
 
@@ -87,8 +75,6 @@ Tue Aug 12 20:03:08 2025
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
 
-
-
 通过上述方式安装好 GPU 版本的 PyTorch 后，可以写一个小脚本检查 GPU 是否已支持使用：
 
 ```python
@@ -96,8 +82,6 @@ import torch
 print(torch.cuda.is_available())      # 打印 `True`
 print(torch.cuda.get_device_name(0))  # 显示 GPU 名称
 ```
-
-
 
 ## 3.3 运行
 
@@ -169,8 +153,6 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
-
-
 运行上述脚本，可以看到类似这样的打印：
 
 ```shell
@@ -186,15 +168,11 @@ Gaps: 30.7 ms
 
 我这里就是将结果打印了一下，有兴趣的可以用 `opencv` 画上目标框、种类、置信度等信息。
 
-
-
 # 3 onnx 导出
 
 如果对 python 的运行速度不满意，yolo 也提供了 C/C++ 接口。
 
 首先需要将 yolo 的 `pt` 文件转化为 `onnx` 文件。转化方式如下。
-
-
 
 ## 3.1 前置说明
 
@@ -211,8 +189,6 @@ pip install onnxslim
 pip install onnxruntime
 ```
 
-
-
 ## 3.2 导出方式
 
 可以直接使用如下命令进行模型转换：
@@ -220,8 +196,6 @@ pip install onnxruntime
 ```shell
 yolo export model=yolo12n.pt format=onnx
 ```
-
-
 
 也可以编写一个简单的小脚本：
 
@@ -237,15 +211,11 @@ model = YOLO("./model/yolo12n.pt")
 model.export(format="onnx", imgsz=640, opset=12, simplify=True)
 ```
 
-
-
 ## 3.3 注意事项
 
-* 导出时指定的 imgsz (例如 640) 决定了 onnx 模型的固定输入尺寸，如：`[1, 3, 640, 640]`
+* 导出时指定的 imgsz（例如 640）决定了 onnx 模型的固定输入尺寸，如：`[1, 3, 640, 640]`
 
 * 使用 C++ 进行推理时，任何图像都需要预处理到上述设定的尺寸
-
-
 
 # 4 onnxruntime
 
@@ -257,13 +227,9 @@ model.export(format="onnx", imgsz=640, opset=12, simplify=True)
 
 `onnxuntime` 是微软公司出品的开源库。
 
-
-
 ### 4.1.2 open-cv
 
 对图像的一些高级处理可以使用 `open-cv`。
-
-
 
 ## 4.2 注意事项
 
@@ -279,19 +245,15 @@ C++ 的 `std::vector` 等动态数组处理模型输入输出这种大小可变�
 
 ---
 
-open-cv 是一个 C++ 库。虽然它也有 C 的接口，但高版本的 open-cv (2.x 后) 已基本全面转向 C++。
+open-cv 是一个 C++ 库。虽然它也有 C 的接口，但高版本的 open-cv（2.x 后）已基本全面转向 C++。
 
 ---
-
-
 
 ## 4.3 onnxruntime 官方地址
 
 ```
 https://github.com/microsoft/onnxruntime/releases
 ```
-
-
 
 ## 4.4 Linux onnxruntime
 
@@ -323,22 +285,20 @@ fatal error: absl/container/inlined_vector.h: No such file or directory
 
 建议不要死磕，让 onnxruntime 自行取搜寻源码并编译好点。
 
-
-
 ### 4.4.2 安装流程
 
 ```shell
 cmake \
--DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/onnxruntime-1.22.1 \
--Donnxruntime_BUILD_SHARED_LIB=ON \
 -S ./cmake \
--B build
+-B build \
+-G Ninja \
+-DCMAKE_INSTALL_PREFIX=$HOME/.local/x64_ubuntu-24/onnxruntime-1.22.1 \
+-Donnxruntime_BUILD_SHARED_LIB=ON
 
-# `onnxruntime_BUILD_SHARED_LIB` 将所有库 (以及依赖库) 编译成一个动态库。这个一定要开启，否则后续比较麻烦
+# `onnxruntime_BUILD_SHARED_LIB` 将所有库（以及依赖库）编译成一个动态库。这个一定要开启，否则后续比较麻烦
 # 若默认 python 是 2.x 版本，可以在 cmake 高级选项中将 `PYTHON_EXECUTABLE` 改为 python3 的路径
 cmake --build build --target edit_cache
 
-cmake --build build --target all -- -j8
 cmake --build build --target install
 
 # Environment
@@ -357,8 +317,6 @@ source ~/.bash_profile
 # Verify
 onnx_test_runner -h
 ```
-
-
 
 ## 4.5 Windows onnxruntime
 
@@ -388,8 +346,6 @@ cmake \
 cmake --build build/ --target install --config Release --parallel 32
 ```
 
-
-
 ## 4.6 Windows CUDA onnxruntime
 
 如果希望编译 CUDA 版本的 onnxruntime，需要确认有 CUDA 环境。
@@ -397,8 +353,6 @@ cmake --build build/ --target install --config Release --parallel 32
 安装 CUDA 的版本建议不要太新，否则用 `nvcc` 编译时，可能会出现一些奇怪的问题。
 
 关于 CUDA 与 onnxruntime 的版本，尽量用官方推荐的版本，以避免一些编译链接问题。
-
-
 
 ### 4.6.1 CUDA 环境
 
@@ -414,15 +368,11 @@ https://developer.nvidia.com/cuda-downloads
 nvcc --version
 ```
 
-
-
 #### 4.6.1.2 CUDNN
 
 ```
 https://developer.nvidia.com/cudnn
 ```
-
-
 
 ### 4.6.2 架构
 
@@ -432,16 +382,14 @@ https://developer.nvidia.com/cudnn
 nvcc --help | findstr "compute_"
 ```
 
-
-
 按照官方推荐于本地环境自行选择即可，这里我选择的是 `compute_89`。
-
-
 
 #### 4.5.2.3 安装
 
 ```shell
 cmake \
+-S ./cmake \
+-B build \
 -DCMAKE_C_COMPILER=cl \
 -DCMAKE_CXX_COMPILER=cl \
 \
@@ -458,14 +406,11 @@ cmake \
 -DBUILD_SHARED_LIBS=OFF \
 -DONNX_USE_MSVC_STATIC_RUNTIME=OFF \
 -Dprotobuf_MSVC_STATIC_RUNTIME=OFF \
--Donnxruntime_BUILD_UNIT_TESTS=OFF \
--S ./cmake \
--B build
+-Donnxruntime_BUILD_UNIT_TESTS=OFF
 
 # 1. nvcc 编译时会消耗大量的内存，线程数量一定要配置的少一些！
 
 # 2. 编译大概率会报一些小错误，可能需要手动解决。
-# 比如2025-05-12的 `abseil-cpp`，`function_ref.h` 和 `raw_hash_set.h` 文件存在警告视为错误的情况。
+# 比如 2025-05-12 的 `abseil-cpp`，`function_ref.h` 和 `raw_hash_set.h` 文件存在警告视为错误的情况。
 cmake --build build/ --target install --config Release --parallel 8
 ```
-

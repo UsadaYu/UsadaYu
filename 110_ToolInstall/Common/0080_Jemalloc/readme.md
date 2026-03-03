@@ -1,7 +1,5 @@
 # Jemalloc
 
-
-
 # 1 环境
 
 ## 1.1 Linux
@@ -12,15 +10,11 @@
 
 * Compiler：gcc-15.2.0
 
-
-
 ### 1.1.2 Ubuntu-24
 
 * glibc version：2.39
 
 * Compiler：gcc-15.2.0
-
-
 
 # 2 源码地址
 
@@ -31,8 +25,6 @@
 ```
 https://github.com/jemalloc/jemalloc/tree/dev
 ```
-
-
 
 # 3 安装流程
 
@@ -47,8 +39,6 @@ https://github.com/jemalloc/jemalloc/tree/dev
 ```
 
 x86_64 环境下可不指定 `--host` 参数。
-
-
 
 ## 3.1 非交叉编译
 
@@ -75,10 +65,6 @@ fi
 source ~/.bash_profile
 ```
 
-
-
-
-
 ## 3.2 交叉编译
 
 交叉编译 aarch64、arm32 等平台。
@@ -100,8 +86,6 @@ make -j8
 make install
 ```
 
-
-
 hi3516dv300 平台：
 
 ```shell
@@ -119,8 +103,6 @@ make -j8
 make install
 ```
 
-
-
 sd3403v100 平台：
 
 ```shell
@@ -136,6 +118,3 @@ CXX=aarch64-himix210-linux-sd3403v100-v1-g++
 make -j8
 make install
 ```
-
-
-

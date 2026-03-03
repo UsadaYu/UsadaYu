@@ -1,12 +1,8 @@
 # Msys2
 
-
-
 # 1 环境
 
 ## 1.1 Windows 11
-
-
 
 # 2 官方地址
 
@@ -14,33 +10,23 @@
 https://www.msys2.org/
 ```
 
-
-
 # 3 注意事项
 
 按流程安装完毕后，程序的目录下，会提供多个和可执行文件。分别为：
 
 mingw32、mingw64、msys2。
 
-
-
 ## 3.1 mingw32
 
 32 位原生 Windows 程序，使用 `i686-w64-mingw32` 工具链。
-
-
 
 ## 3.2 mingw64
 
 64 位原生 Windows 程序，使用 `x86_64-w64-mingw32` 工具链。
 
-
-
 ## 3.3 msys2
 
 模拟 Unix-like 环境，依赖 `msys-2.0.dll`。
-
-
 
 # 4 环境配置
 
@@ -74,8 +60,6 @@ case "$MSYSTEM" in
 esac
 ```
 
-
-
 ## 4.2 环境初始化
 
 更换下载源
@@ -96,8 +80,6 @@ pacman -Syu
 pacman -Su
 ```
 
-
-
 ## 4.3 工具安装
 
 ### 4.3.1 不区分平台的工具
@@ -111,8 +93,6 @@ pacman -S m4
 pacman -S git
 ```
 
-
-
 ### 4.3.2 msys2
 
 msys2 的工具同样默认安装在 `/usr/bin` 目录下。
@@ -125,8 +105,6 @@ pacman -S make
 pacman -S gcc
 pacman -S python python-pip
 ```
-
-
 
 ### 4.3.3 mingw64
 
@@ -149,8 +127,6 @@ pacman -S mingw-w64-x86_64-yasm
 pacman -S mingw-w64-x86_64-nasm
 pacman -S mingw-w64-x86_64-python mingw-w64-x86_64-python-pip
 ```
-
-
 
 ### 4.3.4 关于 pip
 

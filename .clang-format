@@ -27,9 +27,9 @@ AllowShortBlocksOnASingleLine: Never
 AllowShortCaseExpressionOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortCompoundRequirementOnASingleLine: false
-AllowShortFunctionsOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: InlineOnly
 AllowShortIfStatementsOnASingleLine: Never
-AllowShortLambdasOnASingleLine: Empty
+AllowShortLambdasOnASingleLine: Inline
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakBeforeMultilineStrings: true
 # AttributeMacros:
@@ -157,7 +157,7 @@ SortIncludes: CaseInsensitive
 SortUsingDeclarations: Lexicographic
 SpaceAfterCStyleCast: false
 SpaceAfterLogicalNot: false
-SpaceAfterTemplateKeyword: false
+SpaceAfterTemplateKeyword: true
 # SpaceAroundPointerQualifiers:
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeCaseColon: false
@@ -192,4 +192,3 @@ UseTab: Never
 # WhitespaceSensitiveMacros:
 WrapNamespaceBodyWithEmptyLines: Never
 ---
-
