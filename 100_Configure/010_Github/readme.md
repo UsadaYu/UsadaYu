@@ -2,7 +2,18 @@
 
 以仓库管理员的身份配置 github 环境。
 
-# 1 ssh clone
+# 1 配置身份
+
+```shell
+git config --global user.email "xxx@gmail.com"
+git config --global user.name "UsadaYu"
+
+# check
+git config get user.email
+git config get user.name
+```
+
+# 2 ssh clone
 
 每次在 https clone 的本地仓 `git push` 时，那个 username 和 password 感觉格外 `薛定谔`。
 
@@ -20,6 +31,11 @@ ssh-keygen -t ed25519 -C "xxx@gmail.com"
 
 ```shell
 cat $HOME/.ssh/id_ed25519.pub
+
+# 私钥文件权限一般只有 Owner 所有，如果进行过其他错误的权限操作可以改回来
+# 将私钥文件的权限收紧一些，以免后续报 `too open` 之类的错误
+chmod 600 $HOME/.ssh/id_ed25519
+chmod 700 $HOME/.ssh
 ```
 
 打开 github，按如下顺序，将密钥复制进去即可。
@@ -68,6 +84,7 @@ and the repository exists.
 
 ```shell
 vi ~/.ssh/config
+chmod 600 $HOME/.ssh/config
 
 # 添加内容
 Host github.com
