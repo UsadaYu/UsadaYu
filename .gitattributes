@@ -1,0 +1,9 @@
+* text=auto eol=lf
+
+# Windows specific files should retain windows line-endings
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.sln text eol=crlf
+
+# Unix/Linux specific files should use LF line-endings
+*.sh text eol=lf

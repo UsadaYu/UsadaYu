@@ -26,14 +26,14 @@ Find the mixed port of the proxy tool, such as `Hiddify`, which is usually `2081
 
 Enter the following command in the `CMD` window:
 
-```powershell
+```shell
 set http_proxy=http://127.0.0.1:12334
 set https_proxy=http://127.0.0.1:12334
 ```
 
 Enter the following command to verify if the settings are working:
 
-```powershell
+```shell
 curl -L google.com
 ```
 
